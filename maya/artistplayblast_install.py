@@ -19,17 +19,26 @@ except ImportError:
 tool_name = "Artist Playblast"
 
 
-apiversion = int(cmds.about(api=True))
-checkos = platform.system()
-checkuser = getpass.getuser()
-checkpyver = sys.version
+Ver = int(cmds.about(api=True))
+CheckOS = platform.system()
+CheckUser = getpass.getuser()
+CheckPyVer = sys.version
+
+
+
+print("")
+print("Maya Version : " + str(Ver))
+print("OS           : " + CheckOS)
+print("User         : " + CheckUser)
+print("Py Version   : " + CheckPyVer)
+print("")
 
 
 
 
 # 
 def MayaApiVersion():
-    return apiversion
+    return int(cmds.about(api=True))
 
 
 # 
@@ -40,16 +49,19 @@ def onMayaDroppedPythonFile(*args, **kwargs):
 
 # 
 def onMayaDropped():
+
     # 
     if MayaApiVersion() < 2017300:
-        print("WARNING: This version is not supported. Your Maya version: " + apiversion)
+        print("WARNING: This version is not supported. Your Maya version: " + Ver)
 
 
     # 
-    elif MayaApiVersion() <= 2020500:
-        """ prsfx tools setup """
+    # elif MayaApiVersion() >= 2017300 and MayaApiVersion() != 2020500:
+    elif MayaApiVersion() <= 20200500:
+        """ Artist Playblast tools setup """
         SourcePath = os.path.join(os.path.dirname(__file__))
         artistplayblast_icon = os.path.join(SourcePath, "py27/icons", "artistplayblast-icon.png") # locate the icon
+        # artistplayblast_icon = os.path.join(os.getcwd(), "/icons/artistplayblast-icon.png") # locate the icon
 
         SourcePath = os.path.normpath(SourcePath)
         artistplayblast_icon = os.path.normpath(artistplayblast_icon)
@@ -65,7 +77,8 @@ def onMayaDropped():
 
         # 
         artistplayblast_command = """
-# artist playblast
+# Artist Playblast
+# MIT License
 # (c) Prana Ronita
 
 import os
@@ -97,8 +110,12 @@ reload(artistplayblast_)
 
     # 
     elif MayaApiVersion() > 20200500:
-        print("WARNING: This version is not supported. Your Maya version: " + apiversion)
+        print("WARNING: This version is not supported. Your Maya version: " + Ver)
         print("Is it about time to used python 3?")
+
+    # 
+    else:
+        print("????")
 
 
 
@@ -106,6 +123,6 @@ reload(artistplayblast_)
 # 
 if isMaya:
     onMayaDropped()
-    print("Installing {}".format(tool_name))
-else:
-    print("WARNING: Setup doesn't work. This is not Maya.")
+    # print("Installing {}".format(tool_name))
+# else:
+#     print("WARNING: Setup doesn't work. This is not Maya.")

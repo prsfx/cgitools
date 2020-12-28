@@ -29,6 +29,7 @@ if MayaApiVersion() < 20170000:
     print("\nWarning: This version is not supported.")
     print("Your version: " + str(MayaVer) + "\n")
 
+# elif MayaApiVersion() >= 2017300 and MayaApiVersion() != 2020500:
 elif MayaApiVersion() <= 20200500:
     from py27 import artistplayblast
     reload(artistplayblast)

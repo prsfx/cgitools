@@ -12,6 +12,7 @@ from cStringIO import StringIO
 
 sys.dont_write_bytecode = True
 
+#---------------------------------------------------------------------------------------------------------------------#
 
 _PyQt5message_    =   "default bind: PyQt5"
 _PyQt4message_    =   "default bind: PyQt4"
@@ -19,8 +20,7 @@ _PySide2message_  =   "default bind: PySide2"
 _PySideMessage_   =   "default bind: PySide2"
 _nthngTbnd_       =   "Nothing to bind. Prolly nothin'."
 
-
-
+#---------------------------------------------------------------------------------------------------------------------#
 
 defaultBind = "None"
 try:
